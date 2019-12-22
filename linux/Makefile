@@ -13,7 +13,4 @@ init: $(CONFIG_DIR)
 
 update: ## Fetch changes for this repo
 	git pull origin master
-	git submodule init
-	git submodule update
-	git submodule foreach git pull origin master
 
