@@ -76,13 +76,14 @@ nnoremap sL <C-w>L
 nnoremap sH <C-w>H
 nnoremap st :<C-u>tabnew<CR>
 
+" jj to ESC
+inoremap <silent> jj <ESC>
+
 " 80文字を超えた場合に色付け (cc)
 noremap <Plug>(ToggleColorColumn)
             \ :<c-u>let &colorcolumn = len(&colorcolumn) > 0 ? '' :
             \   join(range(81, 9999), ',')<CR>
 nmap cc <Plug>(ToggleColorColumn)
-
-" for lightline.vim
 
 " reset augroup
 augroup MyAutoCmd
@@ -117,9 +118,6 @@ if dein#load_state(s:dein_dir)
 
     call dein#load_toml(s:toml_dir . '/plugins.toml', {'lazy': 0})
     call dein#load_toml(s:toml_dir . '/lazy.toml', {'lazy': 1})
-    if has('python3')
-        call dein#load_toml(s:toml_dir . '/python.toml', {'lazy': 1})
-    endif
 
     call dein#end()
     call dein#save_state()
@@ -131,39 +129,3 @@ endif
 " }}}
 
 
-" jj to ESC
-inoremap <silent> jj <ESC>
-
-"" neocomplcache
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
-    \ }
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
