@@ -126,6 +126,11 @@ endif
 if has('vim_starting') && dein#check_install()
     call dein#install()
 endif
-" }}}
 
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+    call map(s:removed_plugins, "delete(v:val, 'rf')")
+    call dein#recache_runtimepath()
+endif
+" }}}
 
