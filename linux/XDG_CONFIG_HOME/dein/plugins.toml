@@ -17,16 +17,20 @@ repo = 'cespare/vim-toml'
 
 
 # OTHER PLUGINS
+[[plugins]] # git
+repo = 'tpope/vim-fugitive'
+
+
 [[plugins]] # status line
 repo = 'itchyny/lightline.vim'
 hook_add = '''
     set noshowmode
     let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'PaperColor',
         \ 'active': {
-            \ 'left': [ ['mode', 'paste'], ['readonly', 'filepath', 'modified'] ]
+            \ 'left': [ ['mode', 'paste'], ['gitbranch', 'readonly', 'filepath', 'modified'] ]
                 \ },
-        \ 'component_function':{'filepath': 'FilePath'}
+        \ 'component_function':{'filepath': 'FilePath', 'gitbranch': 'FugitiveHead'}
         \ }
 
     function! FilePath()
@@ -47,9 +51,6 @@ hook_add = '''
 [[plugins]] #tag
 repo = 'majutsushi/tagbar'
 hook_add = 'noremap <silent><C-s> :TagbarToggle<CR>'
-
-[[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -138,3 +139,21 @@ hook_add = '''
 [[plugins]] # toggle comment
 repo = 'tomtom/tcomment_vim'
 
+[[plugins]] # insert close tag ex) </table>
+repo = 'alvan/vim-closetag'
+hook_add = '''
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+    let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+    let g:closetag_filetypes = 'html,xhtml,phtml'
+    let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+    let g:closetag_emptyTags_caseSensitive = 1
+
+    " dict
+    " Disables auto-close if not in a "valid" region (based on filetype)
+    let g:closetag_regions = {
+        \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+        \ 'javascript.jsx': 'jsxRegion',
+        \ }
+'''
