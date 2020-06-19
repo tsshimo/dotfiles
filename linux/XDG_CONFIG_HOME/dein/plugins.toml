@@ -54,8 +54,10 @@ hook_add = 'noremap <silent><C-s> :TagbarToggle<CR>'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
-hook_add = 'noremap <silent><C-e> :NERDTreeToggle<CR>'
 
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+hook_add = 'noremap <silent><C-e> :NERDTreeTabsToggle<CR>'
 
 [[plugins]] # highlight word
 repo = 't9md/vim-quickhl'
@@ -70,6 +72,9 @@ hook_add = '''
     nmap <Space>] <Plug>(quickhl-tag-toggle)
     map H <Plug>(operator-quickhl-manual-this-motion)
 '''
+
+[[plugins]] # insert or delete brakets
+repo = 'jiangmiao/auto-pairs'
 
 [[plugins]] # change "()" colors
 repo = 'luochen1990/rainbow'
