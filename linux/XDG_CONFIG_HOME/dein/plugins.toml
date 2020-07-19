@@ -15,6 +15,21 @@ hook_add = 'colorscheme PaperColor'
 [[plugins]] # Toml
 repo = 'cespare/vim-toml'
 
+[[plugins]] # Markdown
+repo = 'plasticboy/vim-markdown'
+
+[[plugins]] # Markdown
+repo = 'previm/previm'
+hook_add = '''
+    autocmd BufRead,BufNewFile *.md  set filetype=markdown
+    nnoremap <silent> <C-p> :PrevimOpen<CR>
+    let g:vim_markdown_folding_disabled=1
+    let g:previm_enable_realtime=1
+'''
+
+[[plugins]] # Markdown
+repo = 'tyru/open-browser.vim'
+
 
 # OTHER PLUGINS
 [[plugins]] # git
